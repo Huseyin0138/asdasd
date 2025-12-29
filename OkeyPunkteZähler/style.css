@@ -25,16 +25,18 @@ table.center {
 
 h1 {
     text-align: center;
+    
 }
 
 body {
     font-family: "Jost", sans-serif;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: first baseline;
     align-items: center;
     background-color: #f0f0f0;
     flex-direction: column;
+    gap: 30px;
 }
 .spieler01buttons {
     display: flex;
