@@ -16,7 +16,7 @@ function myFunction() {
 
 //das ist für Spieler 1
 function gösterge01(){
-
+    
 }
 
 function normalbitis01(){
