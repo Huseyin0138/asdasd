@@ -32,7 +32,7 @@ body {
     font-family: "Jost", sans-serif;
     min-height: 100vh;
     display: flex;
-    justify-content: first baseline;
+    justify-content: top;
     align-items: center;
     background-color: #f0f0f0;
     flex-direction: column;
