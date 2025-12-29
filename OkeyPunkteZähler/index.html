@@ -9,21 +9,30 @@
 </head>
 <body>
         <h1>Okey Punkte Zähler</h1>
-            <table class="center">
+        <div class="container">
+            <table class="center" id="punkteliste">
                 <tr>
+                    <th>Spieler</th>
                     <th><input type="text" id="player01" placeholder="player01"></th>
                     <th><input type="text" id="player02" placeholder="player02"></th>
                     <th><input type="text" id="player03" placeholder="player03"></th>
                     <th><input type="text" id="player04" placeholder="player04"></th>
                 </tr>
                 <tr>
+                    <th id="Punkte">Punkte</th>
                     <td><input type="number" id="score01" value="0"></td>
                     <td><input type="number" id="score02" value="0"></td>
                     <td><input type="number" id="score03" value="0"></td>
                     <td><input type="number" id="score04" value="0"></td>
                 </tr>
             </table>
-    
-</body> 
+        <button type="button" onclick="myFunction()">Try it</button>
+            <div class="spieler01buttons">
+                <button type="button" onclick="gösterge01()">Gösterge</button>
+                <button type="button" onclick="normalbitis01()">Normal Bitiş</button>
+                <button type="button" onclick="okeybitis01()">Okey Bitiş</button>
+            </div>
+        </div>
+    </body> 
 <script src="script.js"></script>
 </html>
