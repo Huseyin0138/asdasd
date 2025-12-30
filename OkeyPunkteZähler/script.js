@@ -1,56 +1,59 @@
-// Hilfsfunktion: Punkte aktualisieren und neue Zeile in der Tabelle anzeigen
+// Aktuelle Punkte (zentral gespeichert)
+let scores = [0, 0, 0, 0];
+
+// Anzeige der großen Punkte-Tabelle aktualisieren
+function updateDisplay() {
+    document.getElementById("display01").innerText = scores[0];
+    document.getElementById("display02").innerText = scores[1];
+    document.getElementById("display03").innerText = scores[2];
+    document.getElementById("display04").innerText = scores[3];
+}
+
+// Hauptfunktion: Punkte abziehen, Protokoll eintragen, Anzeige aktualisieren
 function updateScores(winnerIndex, pointsToSubtract, subtractFromWinner = false) {
-    const scores = [
-        document.getElementById("score01"),
-        document.getElementById("score02"),
-        document.getElementById("score03"),
-        document.getElementById("score04")
-    ];
-
     const table = document.getElementById("punkteliste");
-    const row = table.insertRow(-1); // Am Ende einfügen
+    const row = table.insertRow(-1);
 
-    // Erste Zelle: Beschreibung der Aktion
-    const descCell = row.insertCell(0);
+    // Beschreibung der Aktion
     let description = "";
-    if (pointsToSubtract === 1) description = "Göstergelik (normal)";
+    if (pointsToSubtract === 1) description = "Göstergelik";
     else if (pointsToSubtract === 2) description = "Normal Bitiş";
     else if (pointsToSubtract === 4) description = "Okey Bitiş";
-    else description = `-${pointsToSubtract} Punkte`;
+    description += ` – Spieler ${winnerIndex + 1} gewinnt`;
+    row.insertCell(0).innerText = description;
 
-    if (winnerIndex !== null) {
-        description += ` – Spieler ${winnerIndex + 1} gewinnt`;
-    }
-    descCell.innerHTML = description;
+    // Punkte berechnen und in Protokoll eintragen
+    for (let i = 0; i < 4; i++) {
+        let newScore = scores[i];
 
-    // Punkte abziehen und in Tabelle anzeigen
-    for (let i = 0; i < scores.length; i++) {
-        let currentScore = parseInt(scores[i].value) || 0;
-
-        // Nur abziehen, wenn nicht Gewinner ODER wenn subtractFromWinner true ist
         if (i !== winnerIndex || subtractFromWinner) {
-            currentScore = Math.max(0, currentScore - pointsToSubtract);
-            scores[i].value = currentScore; // Input-Feld aktualisieren
+            newScore = Math.max(0, scores[i] - pointsToSubtract);
+            scores[i] = newScore; // Aktualisiere zentralen Speicher
         }
 
-        // Zelle mit aktuellem Punktestand erstellen
-        const cell = row.insertCell(i + 1);
-        cell.innerHTML = currentScore;
-        cell.style.textAlign = "center";
+        row.insertCell(i + 1).innerText = newScore;
     }
+
+    // Große Anzeige oben aktualisieren
+    updateDisplay();
 }
 
-// Göstergelik: Spieler 1 gewinnt, alle anderen verlieren 1 Punkt
-function gostergelik01() {
-    updateScores(0, 1, false);
-}
+// Alle 12 Funktionen für die Buttons
+function gostergelik01() { updateScores(0, 1, false); }
+function normalbitis01() { updateScores(0, 2, false); }
+function okeybitis01() { updateScores(0, 4, true); }
 
-// Normal Bitiş: Spieler 1 gewinnt, alle anderen verlieren 2 Punkte
-function normalbitis01() {
-    updateScores(0, 2, false);
-}
+function gostergelik02() { updateScores(1, 1, false); }
+function normalbitis02() { updateScores(1, 2, false); }
+function okeybitis02() { updateScores(1, 4, true); }
 
-// Okey Bitiş: Spieler 1 gewinnt mit Okey → ALLE verlieren 4 Punkte (inkl. Gewinner!)
-function okeybitis01() {
-    updateScores(0, 4, false); // alle anderen verlieren 4 Punkte
-}
+function gostergelik03() { updateScores(2, 1, false); }
+function normalbitis03() { updateScores(2, 2, false); }
+function okeybitis03() { updateScores(2, 4, true); }
+
+function gostergelik04() { updateScores(3, 1, false); }
+function normalbitis04() { updateScores(3, 2, false); }
+function okeybitis04() { updateScores(3, 4, true); }
+
+// Start: Anzeige initialisieren
+updateDisplay();

@@ -1,40 +1,89 @@
 <!DOCTYPE html>
-<!-- #region -->
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Okey Punkte Zähler</title>
+    <title>Okey Punkte-Rechner</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-        <h1>Okey Punkte Zähler</h1>
-        <div ,0
-        
-        class="container">
-            <table class="center" id="punkteliste">
-                <tr>
-                    <th>Spieler</th>
-                    <th><input type="text" id="player01" placeholder="player01"></th>
-                    <th><input type="text" id="player02" placeholder="player02"></th>
-                    <th><input type="text" id="player03" placeholder="player03"></th>
-                    <th><input type="text" id="player04" placeholder="player04"></th>
-                </tr>
-                <tr>
-                    <th id="Punkte">Punkte</th>
-                    <td><input type="number" id="score01" value="0"></td>
-                    <td><input type="number" id="score02" value="0"></td>
-                    <td><input type="number" id="score03" value="0"></td>
-                    <td><input type="number" id="score04" value="0"></td>
-                </tr>
-            </table>
-        
-            <div class="spieler01buttons">
-                <button type="button" onclick="gostergelik01()">Gösterge</button>
-                <button type="button" onclick="normalbitis01()">Normal Bitiş</button>
-                <button type="button" onclick="okeybitis01()">Okey Bitiş</button>
+
+    <h1>Okey Punkte</h1>
+
+    <!-- Aktueller Punktestand als große Tabelle -->
+    <table id="current-scores-table">
+        <tr>
+            <th>Spieler 1</th>
+            <th>Spieler 2</th>
+            <th>Spieler 3</th>
+            <th>Spieler 4</th>
+        </tr>
+        <tr>
+            <td id="display01">0</td>
+            <td id="display02">0</td>
+            <td id="display03">0</td>
+            <td id="display04">0</td>
+        </tr>
+    </table>
+
+    <!-- Buttons gruppiert unter den jeweiligen Spielern -->
+    <div class="players-buttons-container">
+
+        <div class="player-block">
+            <h2>Spieler 1</h2>
+            <div class="player-buttons">
+                <button onclick="gostergelik01()">Göstergelik</button>
+                <button onclick="normalbitis01()">Normal Bitiş</button>
+                <button onclick="okeybitis01()">Okey Bitiş</button>
             </div>
         </div>
-    </body> 
-<script src="script.js"></script>
+
+        <div class="player-block">
+            <h2>Spieler 2</h2>
+            <div class="player-buttons">
+                <button onclick="gostergelik02()">Göstergelik</button>
+                <button onclick="normalbitis02()">Normal Bitiş</button>
+                <button onclick="okeybitis02()">Okey Bitiş</button>
+            </div>
+        </div>
+
+        <div class="player-block">
+            <h2>Spieler 3</h2>
+            <div class="player-buttons">
+                <button onclick="gostergelik03()">Göstergelik</button>
+                <button onclick="normalbitis03()">Normal Bitiş</button>
+                <button onclick="okeybitis03()">Okey Bitiş</button>
+            </div>
+        </div>
+
+        <div class="player-block">
+            <h2>Spieler 4</h2>
+            <div class="player-buttons">
+                <button onclick="gostergelik04()">Göstergelik</button>
+                <button onclick="normalbitis04()">Normal Bitiş</button>
+                <button onclick="okeybitis04()">Okey Bitiş</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Protokolltabelle (Verlauf der Runden) -->
+    <table id="punkteliste">
+        <thead>
+            <tr>
+                <th>Aktion</th>
+                <th>Spieler 1</th>
+                <th>Spieler 2</th>
+                <th>Spieler 3</th>
+                <th>Spieler 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Zeilen werden per JavaScript eingefügt -->
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
 </html>
