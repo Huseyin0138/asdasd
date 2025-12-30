@@ -9,7 +9,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;        /* Alles horizontal zentriert */
     background-color: #f0f0f0;
     padding: 20px 10px;
     gap: 30px;
@@ -99,12 +99,21 @@ h1 {
     background-color: #333;
 }
 
-/* Rest bleibt gleich wie vorher */
-#current-scores-table {
+/* === WICHTIG: Beide Tabellen perfekt zentriert === */
+#current-scores-table,
+#punkteliste {
+    width: 90%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
     border-collapse: collapse;
     background-color: white;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+}
+
+/* Aktuelle Punkte-Tabelle */
+#current-scores-table {
+    margin-bottom: 40px; /* Abstand zur Button-Sektion */
 }
 
 #current-scores-table th {
@@ -122,6 +131,7 @@ h1 {
     background-color: #f9f9f9;
 }
 
+/* Button-Bereich */
 .players-buttons-container {
     display: flex;
     flex-wrap: wrap;
@@ -129,6 +139,7 @@ h1 {
     gap: 40px;
     width: 100%;
     max-width: 1200px;
+    margin: 0 auto; /* Zusätzlich zentriert */
 }
 
 .player-block {
@@ -167,14 +178,7 @@ button:hover {
     background-color: #333;
 }
 
-#punkteliste {
-    border-collapse: collapse;
-    width: 90%;
-    max-width: 1000px;
-    background-color: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
+/* Protokolltabelle */
 #punkteliste th {
     background-color: #333;
     color: white;
@@ -191,9 +195,11 @@ button:hover {
     background-color: #f2f2f2;
 }
 
+/* Responsive */
 @media (max-width: 768px) {
     h1 { font-size: 1.8rem; }
     #current-scores-table td { font-size: 2rem; padding: 15px; }
+    #current-scores-table, #punkteliste { width: 95%; }
     button { width: 120px; height: 45px; font-size: 13px; }
     .players-buttons-container { gap: 30px; }
     .player-setup input { width: 180px; }
