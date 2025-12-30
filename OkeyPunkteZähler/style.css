@@ -18,10 +18,88 @@ body {
 h1 {
     text-align: center;
     font-size: 2.2rem;
-    margin-bottom: 10px;
 }
 
-/* Aktuelle Punkte-Tabelle */
+.hidden {
+    display: none;
+}
+
+/* Setup-Bereich */
+.setup-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.setup-container h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.player-setup {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.player-setup label {
+    width: 100px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.player-setup input {
+    width: 200px;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.start-points {
+    margin: 25px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.start-points label {
+    width: 180px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.start-points input {
+    width: 100px;
+    padding: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+
+#start-game, #new-game {
+    width: 200px;
+    height: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#start-game:hover, #new-game:hover {
+    background-color: #333;
+}
+
+/* Rest bleibt gleich wie vorher */
 #current-scores-table {
     border-collapse: collapse;
     background-color: white;
@@ -44,7 +122,6 @@ h1 {
     background-color: #f9f9f9;
 }
 
-/* Button-Bereich */
 .players-buttons-container {
     display: flex;
     flex-wrap: wrap;
@@ -90,7 +167,6 @@ button:hover {
     background-color: #333;
 }
 
-/* Protokolltabelle */
 #punkteliste {
     border-collapse: collapse;
     width: 90%;
@@ -115,15 +191,16 @@ button:hover {
     background-color: #f2f2f2;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     h1 { font-size: 1.8rem; }
     #current-scores-table td { font-size: 2rem; padding: 15px; }
     button { width: 120px; height: 45px; font-size: 13px; }
     .players-buttons-container { gap: 30px; }
+    .player-setup input { width: 180px; }
 }
 
 @media (max-width: 480px) {
     #current-scores-table td { font-size: 1.6rem; padding: 12px; }
     button { width: 110px; font-size: 12px; }
+    .setup-container { padding: 20px; }
 }
