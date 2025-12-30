@@ -1,28 +1,56 @@
-function myFunction() {
-    var table = document.getElementById("punkteliste");
-    var row = table.insertRow(2);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    cell1.innerHTML = document.getElementById("Punkte").innerHTML;
-    cell2.innerHTML = "NEW CELL2";
-    var cell3 = row.insertCell(2);
-    cell3.innerHTML = "NEW CELL3";
-    var cell4 = row.insertCell(3);
-    cell4.innerHTML = "NEW CELL4";
-    var cell5 = row.insertCell(4);
-    cell5.innerHTML = "NEW CELL5";
+// Hilfsfunktion: Punkte aktualisieren und neue Zeile in der Tabelle anzeigen
+function updateScores(winnerIndex, pointsToSubtract, subtractFromWinner = false) {
+    const scores = [
+        document.getElementById("score01"),
+        document.getElementById("score02"),
+        document.getElementById("score03"),
+        document.getElementById("score04")
+    ];
+
+    const table = document.getElementById("punkteliste");
+    const row = table.insertRow(-1); // Am Ende einfügen
+
+    // Erste Zelle: Beschreibung der Aktion
+    const descCell = row.insertCell(0);
+    let description = "";
+    if (pointsToSubtract === 1) description = "Göstergelik (normal)";
+    else if (pointsToSubtract === 2) description = "Normal Bitiş";
+    else if (pointsToSubtract === 4) description = "Okey Bitiş";
+    else description = `-${pointsToSubtract} Punkte`;
+
+    if (winnerIndex !== null) {
+        description += ` – Spieler ${winnerIndex + 1} gewinnt`;
+    }
+    descCell.innerHTML = description;
+
+    // Punkte abziehen und in Tabelle anzeigen
+    for (let i = 0; i < scores.length; i++) {
+        let currentScore = parseInt(scores[i].value) || 0;
+
+        // Nur abziehen, wenn nicht Gewinner ODER wenn subtractFromWinner true ist
+        if (i !== winnerIndex || subtractFromWinner) {
+            currentScore = Math.max(0, currentScore - pointsToSubtract);
+            scores[i].value = currentScore; // Input-Feld aktualisieren
+        }
+
+        // Zelle mit aktuellem Punktestand erstellen
+        const cell = row.insertCell(i + 1);
+        cell.innerHTML = currentScore;
+        cell.style.textAlign = "center";
+    }
 }
 
-
-//das ist für Spieler 1
-function gösterge01(){
-    
+// Göstergelik: Spieler 1 gewinnt, alle anderen verlieren 1 Punkt
+function gostergelik01() {
+    updateScores(0, 1, false);
 }
 
-function normalbitis01(){
-    
+// Normal Bitiş: Spieler 1 gewinnt, alle anderen verlieren 2 Punkte
+function normalbitis01() {
+    updateScores(0, 2, false);
 }
 
-function okeybitis01(){
-    
+// Okey Bitiş: Spieler 1 gewinnt mit Okey → ALLE verlieren 4 Punkte (inkl. Gewinner!)
+function okeybitis01() {
+    updateScores(0, 4, false); // alle anderen verlieren 4 Punkte
 }
